@@ -6,6 +6,8 @@
     <title>User Details Storage</title>
     <!-- Link to the external CSS file -->
     <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- Link to external javascript file -->
+    <script src="script.js"></script>
 </head>
 <body>
     <h1>User Details</h1>
@@ -16,12 +18,20 @@
     </form>
 
     <h2>Stored User Details</h2>
-    <div id="user-details">
+    <!-- <div id="user-details">
         <p><strong>Name:</strong> <span id="stored-name"></span></p>
         <p><strong>Email:</strong> <span id="stored-email"></span></p>
+    </div> -->
+    <!-- ... (other HTML elements) ... -->
+
+    <div id="user-details">
+        <h2>User Details</h2>
+        <p><strong>Name:</strong> <span id="displayed-name"></span></p>
+        <p><strong>Email:</strong> <span id="displayed-email"></span></p>
     </div>
 
-    <script>
+
+    <!-- <script>
         // Get the form and input elements
         const userForm = document.getElementById('user-form');
         const nameInput = document.getElementById('name');
@@ -66,6 +76,9 @@
             storedName.textContent = 'No user data found in local storage.';
             storedEmail.textContent = '';
         }
-    </script>
+    </script> -->
+
+
+
 </body>
 </html>
