@@ -59,4 +59,83 @@ function displayStoredUsers() {
         userDetailContainer.appendChild(userDetail);
     });
 
-    // Add event listeners to
+    
+
+
+
+
+// By mistake you have added thw wrong email id. 
+// Lets edit and fix it.
+
+// ...
+
+// Function to display stored user details
+function displayStoredUsers() {
+    userDetailContainer.innerHTML = ''; // Clear previous entries
+
+    const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
+
+    if (storedUsers.length === 0) {
+        userDetailContainer.innerHTML = 'No user data found in local storage.';
+        return;
+    }
+
+    storedUsers.forEach((user, index) => {
+        const userDetail = document.createElement('div');
+        userDetail.classList.add('user-detail');
+        userDetail.innerHTML = `
+            <p><strong>Name:</strong> <span>${user.name}</span></p>
+            <p><strong>Email:</strong> <span class="stored-email">${user.email}</span></p>
+            <button class="edit-button" data-index="${index}">Edit</button>
+            <button class="delete-button" data-index="${index}">Delete</button>
+        `;
+        userDetailContainer.appendChild(userDetail);
+    });
+
+    // Add event listeners to edit and delete buttons
+    const editButtons = document.querySelectorAll('.edit-button');
+    const deleteButtons = document.querySelectorAll('.delete-button');
+
+    editButtons.forEach((button) => {
+        button.addEventListener('click', (e) => {
+            const index = e.target.getAttribute('data-index');
+            editStoredUser(index);
+        });
+    });
+
+    deleteButtons.forEach((button) => {
+        button.addEventListener('click', (e) => {
+            const index = e.target.getAttribute('data-index');
+            deleteStoredUser(index);
+            displayStoredUsers();
+        });
+    });
+}
+
+// Function to edit a stored user's email
+function editStoredUser(index) {
+    const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
+    const user = storedUsers[index];
+    
+    if (!user) {
+        return;
+    }
+
+    const newEmail = prompt(`Edit email for ${user.name}:`, user.email);
+
+    if (newEmail !== null) {
+        // Update the email in the user object
+        user.email = newEmail;
+
+        // Update the array and store it in local storage
+        storedUsers[index] = user;
+        localStorage.setItem('users', JSON.stringify(storedUsers));
+
+        // Re-display the user details
+        displayStoredUsers();
+    }
+}
+
+// ...
+
+
