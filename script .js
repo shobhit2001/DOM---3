@@ -1,53 +1,62 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const userForm = document.getElementById('user-form');
-    const nameInput = document.getElementById('name');
-    const emailInput = document.getElementById('email');
-    const userList = document.getElementById('user-list');
+// Get the form and input elements
+const userForm = document.getElementById('user-form');
+const nameInput = document.getElementById('name');
+const emailInput = document.getElementById('email');
 
-    // New elements for displaying user details
-    const displayedName = document.getElementById('displayed-name');
-    const displayedEmail = document.getElementById('displayed-email');
+// Get the element to display stored user details
+const userDetailContainer = document.getElementById('user-details');
 
-    userForm.addEventListener('submit', function (e) {
-        e.preventDefault();
+// Listen for form submission
+userForm.addEventListener('submit', function (e) {
+    e.preventDefault(); // Prevent the default form submission
 
-        const name = nameInput.value;
-        const email = emailInput.value;
+    // Get user input values
+    const name = nameInput.value;
+    const email = emailInput.value;
 
-        const user = {
-            name: name,
-            email: email
-        };
+    // Create a user object
+    const user = {
+        name: name,
+        email: email
+    };
 
-        const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
-        storedUsers.push(user);
+    // Retrieve existing users or initialize an empty array
+    const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
 
-        localStorage.setItem('users', JSON.stringify(storedUsers));
+    // Add the new user to the array
+    storedUsers.push(user);
 
-        nameInput.value = '';
-        emailInput.value = '';
+    // Store the updated array in local storage
+    localStorage.setItem('users', JSON.stringify(storedUsers));
 
-        alert('User details have been stored in local storage.');
-        displayUserList(storedUsers);
+    // Clear the form inputs
+    nameInput.value = '';
+    emailInput.value = '';
 
-        // Display the last added user's details on the screen
-        displayedName.textContent = user.name;
-        displayedEmail.textContent = user.email;
-    });
+    // Update the displayed user details
+    displayStoredUsers();
+});
 
-    function displayUserList(users) {
-        userList.innerHTML = '';
-        if (users.length > 0) {
-            users.forEach(user => {
-                const listItem = document.createElement('li');
-                listItem.textContent = `Name: ${user.name}, Email: ${user.email}`;
-                userList.appendChild(listItem);
-            });
-        } else {
-            userList.textContent = 'No user data found in local storage.';
-        }
-    }
+// Function to display stored user details
+function displayStoredUsers() {
+    userDetailContainer.innerHTML = ''; // Clear previous entries
 
     const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
-    displayUserList(storedUsers);
-});
+
+    if (storedUsers.length === 0) {
+        userDetailContainer.innerHTML = 'No user data found in local storage.';
+        return;
+    }
+
+    storedUsers.forEach((user, index) => {
+        const userDetail = document.createElement('div');
+        userDetail.classList.add('user-detail');
+        userDetail.innerHTML = `
+            <p><strong>Name:</strong> <span>${user.name}</span></p>
+            <p><strong>Email:</strong> <span>${user.email}</span></p>
+            <button class="delete-button" data-index="${index}">Delete</button>
+        `;
+        userDetailContainer.appendChild(userDetail);
+    });
+
+    // Add event listeners to

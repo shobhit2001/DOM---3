@@ -26,14 +26,28 @@ button {
 }
 
 /* Style for the stored user details section */
-#user-details {
+.user-detail {
     border: 1px solid #ccc;
     padding: 10px;
     background-color: #f9f9f9;
+    margin-bottom: 10px;
+    position: relative;
 }
 
-#user-details p {
+.user-detail p {
     margin: 5px 0;
+}
+
+/* Style for the delete button */
+.delete-button {
+    background-color: #ff5555;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
 }
 
 /* Style for headings */

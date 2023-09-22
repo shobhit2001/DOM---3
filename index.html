@@ -6,8 +6,6 @@
     <title>User Details Storage</title>
     <!-- Link to the external CSS file -->
     <link rel="stylesheet" type="text/css" href="style.css">
-    <!-- Link to external javascript file -->
-    <script src="script.js"></script>
 </head>
 <body>
     <h1>User Details</h1>
@@ -18,67 +16,11 @@
     </form>
 
     <h2>Stored User Details</h2>
-    <!-- <div id="user-details">
-        <p><strong>Name:</strong> <span id="stored-name"></span></p>
-        <p><strong>Email:</strong> <span id="stored-email"></span></p>
-    </div> -->
-    <!-- ... (other HTML elements) ... -->
-
     <div id="user-details">
-        <h2>User Details</h2>
-        <p><strong>Name:</strong> <span id="displayed-name"></span></p>
-        <p><strong>Email:</strong> <span id="displayed-email"></span></p>
+        <!-- User details will be displayed here dynamically -->
     </div>
 
-
-    <!-- <script>
-        // Get the form and input elements
-        const userForm = document.getElementById('user-form');
-        const nameInput = document.getElementById('name');
-        const emailInput = document.getElementById('email');
-
-        // Get the elements to display stored user details
-        const storedName = document.getElementById('stored-name');
-        const storedEmail = document.getElementById('stored-email');
-
-        // Listen for form submission
-        userForm.addEventListener('submit', function (e) {
-            e.preventDefault(); // Prevent the default form submission
-
-            // Get user input values
-            const name = nameInput.value;
-            const email = emailInput.value;
-
-            // Create a user object
-            const user = {
-                name: name,
-                email: email
-            };
-
-            // Store the user object in local storage
-            localStorage.setItem('user', JSON.stringify(user));
-
-            // Clear the form inputs
-            nameInput.value = '';
-            emailInput.value = '';
-
-            alert('User details have been stored in local storage.');
-        });
-
-        // Retrieve and display stored user details
-        const storedUser = localStorage.getItem('user');
-
-        if (storedUser) {
-            const user = JSON.parse(storedUser);
-            storedName.textContent = user.name;
-            storedEmail.textContent = user.email;
-        } else {
-            storedName.textContent = 'No user data found in local storage.';
-            storedEmail.textContent = '';
-        }
-    </script> -->
-
-
-
+    <!-- Link to external JavaScript file -->
+    <script src="script.js"></script>
 </body>
 </html>
